@@ -1,21 +1,2 @@
 # gotzmann-app
-Offizielle Gotzmann App – Portfolio, Workshops und Buchungsanfragen. Flutter-App für iOS & Android mit Galerie, Workshop-Infos, Instagram-Feed, Buchungsformular inkl. AGB.
-
-## Navigation & Designsystem
-Die App verwendet GoRouter für die Navigation. Die Hauptnavigation ist eine `ShellRoute` mit einer `NavigationBar`, die die folgenden Tabs enthält:
-- Home (`/`)
-- Galerie (`/gallery`)
-- Workshops (`/workshops`)
-- Buchen (`/booking`)
-- Instagram (`/instagram`)
-- Kontakt/AGB (`/legal`)
-
-Das Designsystem ist in `lib/theme` definiert und verwendet ein dunkles Farbschema mit einer Akzentfarbe.
-
-Der AGB-Screen (`/legal/agb`) versucht primär, die AGBs von der Webseite zu laden. Schlägt dies fehl, wird ein lokaler Fallback aus `assets/content/agb.md` angezeigt.
-
-## Web-Preview
-Eine Web-Vorschau der App wird automatisch nach jedem Merge auf den `main`-Branch erstellt und auf GitHub Pages veröffentlicht.
-
-- **Einrichtung:** Nach dem ersten Merge muss unter `Settings → Pages` der Branch `gh-pages` als Quelle für das Deployment ausgewählt werden (im `/root`-Verzeichnis).
-- **Link:** Die veröffentlichte App ist unter [https://<dein-github-username>.github.io/gotzmann-app/](https://<dein-github-username>.github.io/gotzmann-app/) verfügbar.
+Offizielle Gotzmann App – Portfolio, Workshops und Buchungsanfragen. Flutter-App für iOS &amp; Android mit Galerie, Workshop-Infos, Instagram-Feed, Buchungsformular inkl. AGB.
