@@ -4,6 +4,7 @@ import 'package:gotzmann_app/features/booking/booking_screen.dart';
 import 'package:gotzmann_app/features/gallery/gallery_screen.dart';
 import 'package:gotzmann_app/features/home/home_screen.dart';
 import 'package:gotzmann_app/features/instagram/instagram_screen.dart';
+import 'package:gotzmann_app/features/legal_contact/agb_screen.dart';
 import 'package:gotzmann_app/features/legal_contact/legal_contact_screen.dart';
 import 'package:gotzmann_app/features/workshops/workshops_screen.dart';
 
@@ -86,6 +87,13 @@ GoRouter appRouter() {
           GoRoute(
             path: '/legal',
             builder: (context, state) => const LegalContactScreen(),
+            routes: [
+              GoRoute(
+                path: 'agb',
+                name: 'agb',
+                builder: (context, state) => const AgbScreen(),
+              ),
+            ],
           ),
         ],
       ),
@@ -94,8 +102,7 @@ GoRouter appRouter() {
 }
 
 int _calculateSelectedIndex(BuildContext context) {
-  final GoRouter route = GoRouter.of(context);
-  final String location = route.routerDelegate.currentConfiguration.uri.path;
+  final String location = GoRouterState.of(context).uri.toString();
   if (location == '/') {
     return 0;
   }
@@ -111,7 +118,7 @@ int _calculateSelectedIndex(BuildContext context) {
   if (location == '/instagram') {
     return 4;
   }
-  if (location == '/legal') {
+  if (location.startsWith('/legal')) {
     return 5;
   }
   return 0;
