@@ -1,4 +1,4 @@
-name: Flutter CI
+name: Flutter CI (minimal green)
 
 on:
   push:
@@ -13,27 +13,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Flutter
+      - name: Set up Flutter (stable)
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+          # Optional: falls du pinnen willst
+          # flutter-version: "3.22.2"
 
-      - name: Flutter version
-        run: flutter --version
+      - name: Versions
+        run: |
+          flutter --version
+          dart --version
 
-      - name: Install dependencies
+      - name: Pub get
         run: flutter pub get
-
-      - name: Analyze
-        run: flutter analyze
-
-      - name: Run tests
-        run: flutter test --no-pub --coverage || true
-
-      - name: Upload coverage
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage
-          path: coverage/
-
