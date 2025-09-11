@@ -13,3 +13,9 @@ Die App verwendet GoRouter für die Navigation. Die Hauptnavigation ist eine `Sh
 Das Designsystem ist in `lib/theme` definiert und verwendet ein dunkles Farbschema mit einer Akzentfarbe.
 
 Der AGB-Screen (`/legal/agb`) versucht primär, die AGBs von der Webseite zu laden. Schlägt dies fehl, wird ein lokaler Fallback aus `assets/content/agb.md` angezeigt.
+
+## Web-Preview
+Eine Web-Vorschau der App wird automatisch nach jedem Merge auf den `main`-Branch erstellt und auf GitHub Pages veröffentlicht.
+
+- **Einrichtung:** Nach dem ersten Merge muss unter `Settings → Pages` der Branch `gh-pages` als Quelle für das Deployment ausgewählt werden (im `/root`-Verzeichnis).
+- **Link:** Die veröffentlichte App ist unter [https://<dein-github-username>.github.io/gotzmann-app/](https://<dein-github-username>.github.io/gotzmann-app/) verfügbar.
