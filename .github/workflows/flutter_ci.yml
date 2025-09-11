@@ -27,4 +27,3 @@ jobs:
 
       - name: Pub get
         run: flutter pub get
-
