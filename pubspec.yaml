@@ -1,28 +1,13 @@
 name: gotzmann_app
-description: Offizielle Gotzmann App – Portfolio, Workshops, Buchungsanfragen
-version: 0.1.0+1
+description: Web preview skeleton
 publish_to: "none"
-
 environment:
   sdk: ">=3.4.0 <4.0.0"
-
 dependencies:
   flutter:
     sdk: flutter
-  go_router: ^14.2.0
-  shared_preferences: ^2.2.3
-  url_launcher: ^6.3.0
-  flutter_markdown: ^0.6.18
-  webview_flutter: ^4.7.0
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
-
 flutter:
   uses-material-design: true
-  assets:
-    - assets/branding/
-    - assets/content/
