@@ -6,6 +6,7 @@ import 'package:gotzmann_app/features/home/home_screen.dart';
 import 'package:gotzmann_app/features/instagram/instagram_screen.dart';
 import 'package:gotzmann_app/features/legal_contact/agb_screen.dart';
 import 'package:gotzmann_app/features/legal_contact/legal_contact_screen.dart';
+import 'package:gotzmann_app/features/prices/prices_screen.dart';
 import 'package:gotzmann_app/features/settings/settings_screen.dart';
 import 'package:gotzmann_app/features/workshops/workshops_screen.dart';
 
@@ -101,6 +102,10 @@ GoRouter appRouter() {
       GoRoute(
         path: '/settings',
         builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: '/prices',
+        builder: (context, state) => const PricesScreen(),
       ),
     ],
   );
