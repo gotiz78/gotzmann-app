@@ -1,1 +1,0 @@
-const bool kEnableNotifications = false;

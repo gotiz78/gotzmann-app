@@ -1,0 +1,43 @@
+name: PR Scope Check
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  scope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Load scope patterns
+        id: scope
+        run: |
+          if [ ! -f SCOPE.txt ]; then
+            echo "SCOPE.txt missing"; exit 1;
+          fi
+          echo "patterns<<EOF" >> $GITHUB_OUTPUT
+          cat SCOPE.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Get changed files
+        id: diff
+        run: |
+          git fetch origin ${{ github.base_ref }} --depth=1
+          git diff --name-only origin/${{ github.base_ref }}...HEAD > changed.txt
+          echo "changed<<EOF" >> $GITHUB_OUTPUT
+          cat changed.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Validate scope
+        run: |
+          ok=0
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            match=0
+            while IFS= read -r pat; do
+              [ -z "$pat" ] && continue
+              if [[ "$file" == $pat ]]; then match=1; break; fi
+            done < SCOPE.txt
+            if [ $match -eq 0 ]; then
+              echo "::error file=$file::File is out of declared scope"; ok=1
+            fi
+          done < changed.txt
+          exit $ok

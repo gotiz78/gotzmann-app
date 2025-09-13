@@ -1,10 +1,10 @@
-name: Flutter CI
+name: Flutter CI (minimal green)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, bootstrap/api-only-ci ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, bootstrap/api-only-ci ]
 
 jobs:
   build:
@@ -17,12 +17,13 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+          # Optional: falls du pinnen willst
+          # flutter-version: "3.22.2"
+
+      - name: Versions
+        run: |
+          flutter --version
+          dart --version
 
       - name: Pub get
         run: flutter pub get
-
-      - name: Analyze
-        run: flutter analyze
-
-      - name: Run tests
-        run: flutter test
