@@ -19,13 +19,6 @@ class LegalContactScreen extends StatelessWidget {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => context.go('/legal/agb'),
           ),
-          const Divider(),
-          ListTile(
-            title: const Text('Einstellungen'),
-            subtitle: const Text('Benachrichtigungen verwalten'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => context.go('/settings'),
-          ),
         ],
       ),
     );

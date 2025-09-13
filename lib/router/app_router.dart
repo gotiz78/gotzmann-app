@@ -5,6 +5,7 @@ import 'package:gotzmann_app/features/home/home_screen.dart';
 import 'package:gotzmann_app/features/instagram/instagram_screen.dart';
 import 'package:gotzmann_app/features/legal_contact/agb_screen.dart';
 import 'package:gotzmann_app/features/legal_contact/legal_contact_screen.dart';
+import 'package:gotzmann_app/features/settings/membership_screen.dart';
 import 'package:gotzmann_app/features/settings/settings_screen.dart';
 import 'package:gotzmann_app/features/workshops/workshops_screen.dart';
 
@@ -35,6 +36,8 @@ GoRouter appRouter() {
                     icon: Icon(Icons.camera_alt), label: 'Instagram'),
                 NavigationDestination(
                     icon: Icon(Icons.info), label: 'Rechtliches'),
+                NavigationDestination(
+                    icon: Icon(Icons.settings), label: 'Einstellungen'),
               ],
               onDestinationSelected: (index) {
                 switch (index) {
@@ -52,6 +55,9 @@ GoRouter appRouter() {
                     break;
                   case 4:
                     context.go('/legal');
+                    break;
+                  case 5:
+                    context.go('/settings');
                     break;
                 }
               },
@@ -86,11 +92,17 @@ GoRouter appRouter() {
               ),
             ],
           ),
+          GoRoute(
+              path: '/settings',
+              builder: (context, state) => const SettingsScreen(),
+              routes: [
+                GoRoute(
+                  path: 'membership',
+                  name: 'membership',
+                  builder: (context, state) => const MembershipScreen(),
+                ),
+              ]),
         ],
-      ),
-       GoRoute(
-        path: '/settings',
-        builder: (context, state) => const SettingsScreen(),
       ),
     ],
   );
@@ -103,5 +115,6 @@ int _calculateSelectedIndex(BuildContext context) {
   if (location.startsWith('/booking')) return 2;
   if (location.startsWith('/instagram')) return 3;
   if (location.startsWith('/legal')) return 4;
+  if (location.startsWith('/settings')) return 5;
   return 0;
 }

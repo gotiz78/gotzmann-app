@@ -4,7 +4,8 @@ import 'package:gotzmann_app/widgets/markdown_page.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class AgbScreen extends StatefulWidget {
-  const AgbScreen({super.key});
+  final bool forceFallback;
+  const AgbScreen({super.key, this.forceFallback = false});
 
   @override
   State<AgbScreen> createState() => _AgbScreenState();
@@ -18,24 +19,28 @@ class _AgbScreenState extends State<AgbScreen> {
   void initState() {
     super.initState();
 
-    final controller = WebViewController();
-    controller
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onWebResourceError: (WebResourceError error) {
-            if (error.isForMainFrame) {
-              setState(() {
-                _showFallback = true;
-              });
-            }
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse(kAgbUrl));
+    _showFallback = widget.forceFallback;
 
-    _controller = controller;
+    if (!widget.forceFallback) {
+      final controller = WebViewController();
+      controller
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setBackgroundColor(const Color(0x00000000))
+        ..setNavigationDelegate(
+          NavigationDelegate(
+            onWebResourceError: (WebResourceError error) {
+              if (error.isForMainFrame) {
+                setState(() {
+                  _showFallback = true;
+                });
+              }
+            },
+          ),
+        )
+        ..loadRequest(Uri.parse(kAgbUrl));
+
+      _controller = controller;
+    }
   }
 
   @override

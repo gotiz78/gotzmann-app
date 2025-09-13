@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gotzmann_app/config/flags.dart';
 import 'package:gotzmann_app/services/notification_service.dart';
 
@@ -32,6 +33,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ? const Center(child: CircularProgressIndicator())
           : ListView(
               children: [
+                ListTile(
+                  title: const Text('Mitgliedschaft'),
+                  subtitle: const Text('Vorteile ansehen und verwalten'),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.go('/membership'),
+                ),
+                const Divider(),
                 SwitchListTile(
                   title: const Text('Benachrichtigungen'),
                   subtitle: Text(kEnableNotifications
